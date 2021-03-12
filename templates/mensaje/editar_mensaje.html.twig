@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Mensajes{% endblock %}
+
+{% block body %}
+      <div class="card">
+  <div class="card-header">
+    editar mensaje
+  </div>
+  <div class="card-body">
+      {{ form(form, {'attr': {'id': 'formulario_editar_mensajes'}}) }}
+  </div>
+ 
+{% endblock %}

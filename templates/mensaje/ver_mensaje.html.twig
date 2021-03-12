@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %} 
+        <div id="mensaje">
+               <div id="usuarioForo">                   
+                   <h1 style="font-size: 25px;" > <img width="50px" src="{{ asset('/imagenes/') }}/{{ mensaje.usuario.imagen }}" alt="alt"/> {{ mensaje.usuario.nombre  }} {{ mensaje.usuario.apellidos}} </h1>
+               </div>
+               <div id="mensajeForo">
+                   <h1> {{ mensaje.titulo}}</h1> <br>
+                   <img width="600px" height="400px;" src="{{ asset('/imagenes/') }}/{{ mensaje.imagen }}" alt="alt"/> <br> <br>
+                   <p>{{ mensaje.contenido}}</p>                   
+               </div>
+             
+                   
+                
+                      
+              
+                          
+        </div>
+
+    
+    <div style="margin:40px" class="card ">
+        <div class="card-header">
+            <h1 style="text-align: center;">Sus Respuestas</h1>
+        </div>
+        <div class="card-body">
+            {% for respuesta in mensaje.respuestas %}
+                <div id="mensaje">
+                    <div id="usuarioForo">                   
+                        <h1 style="font-size: 25px;" > <img width="50px" src="{{ asset('/imagenes/') }}/{{ respuesta.usuario.imagen }}" alt="alt"/> {{ respuesta.usuario.nombre  }} {{ respuesta.usuario.apellidos}} </h1>
+                    </div>
+                    <div id="mensajeForo">
+                        <p>{{ respuesta.contenido}}</p>  
+                        <img width="600px" height="400px;" src="{{ asset('/imagenes/') }}/{{ respuesta.imagen }}" alt="alt"/> <br> <br>
+                                         
+                    </div>
+                        
+                      {%  if app.user.nombre == respuesta.usuario.nombre%}
+                        <a  style="text-decoration: none;" href="{{ path('borrar_respuesta',{id:respuesta.id}) }}">X</a>
+                        <button class="button">   <a style="text-decoration: none; color: white" href="{{ path('editar_respuesta',{id:respuesta.id}) }}">editar respuesta</a> </button>
+                        {% endif %}    
+
+
+
+
+
+
+                </div>
+           
+            {% else %}
+                No Hay respuestas todavia
+            {% endfor %}
+        </div>
+
+    </div>
+
+{% endblock %}

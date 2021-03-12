@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   <header id="foro">
+       <h1 style="font-size: 50px;">Comparte con nosotros tu experiencia</h1>
+   </header>
+   
+       {% for mensajes in mensaje %}          
+               
+           <div id="mensaje">
+               <div id="usuarioForo">                   
+                   <h1 style="font-size: 25px;" > <img width="50px" src="{{ asset('/imagenes/') }}/{{ mensajes.usuario.imagen }}" alt="alt"/> {{ mensajes.usuario.nombre  }} {{ mensajes.usuario.apellidos}} </h1>
+               </div>
+               <div id="mensajeForo">
+                   <h1> <a style="text-decoration: none;" href="{{  path('ver_mensaje',{id:mensajes.id}) }}">{{ mensajes.titulo}}</h1> <br>
+                   <img width="600px" height="400px;" src="{{ asset('/imagenes/') }}/{{ mensajes.imagen }}" alt="alt"/> <br> <br>
+                   <p>{{ mensajes.contenido}}</p>                   
+               </div>
+             
+                   
+                   
+                   
+                  {%  if app.user.nombre == mensajes.usuario.nombre%}
+                       <a  style="text-decoration: none;" href="{{ path('borrar_mensaje',{id:mensajes.id}) }}">X</a>
+                       <button class="button">   <a style="text-decoration: none; color: white" href="{{ path('editar_mensaje',{id:mensajes.id}) }}">editar mensaje</a> </button>
+
+                  {% endif %}
+                  {%  if app.user.nombre != mensajes.usuario.nombre%}
+                       
+                      <button class="button"><a style="text-decoration: none; color: white" href="{{ path('insertar_respuesta',{id:mensajes.id}) }}">Insertar Respuesta</a>     </button>     
+                  {% endif %}
+                      
+              
+                          
+           </div>
+           
+           {% else %}
+               No hay ningún mensaje
+       {% endfor %}
+       
+       
+    
+   <button > <a  style="text-decoration: none; " href="{{ path('insertar_mensaje') }}"> Crear nuevo mensaje</a></button>
+
+   
+   
+   
+   
+{% endblock %}

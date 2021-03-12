@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div style="margin:40px" class="card ">
+        <div class="card-header">
+          <h1 style="text-align: center;">Respuestas</h1>
+        </div>
+        <div class="card-body">
+            {% for respuesta in respuestas %}
+                <p>{{ respuesta.contenido}}</p>
+                
+            
+            {% else %}
+                No hay ninguna respuesta
+                
+            
+            {% endfor %}
+            
+                   
+        </div>
+
+    </div>
+     
+{% endblock %}

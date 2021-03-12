@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div style="margin:40px" class="card ">
+        <div class="card-header">
+          <h1 style="text-align: center;">Usuario</h1>
+        </div>
+        <div class="card-body">
+           <h2 >{{ usuario.nombre }}  {{ usuario.apellidos }}  </h2>
+           <p><b>Telefono: </b> {{ usuario.telefono}}</p>
+           <p> <b>Email:</b> {{ usuario.email }}  </p>
+           <p> <b>Pais:</b>{{ usuario.pais}}           
+           </p>    
+           
+           <img src="{{ asset('/imagenes/') }}/{{ usuario.imagen }}" height="100">        
+        </div>
+
+    </div>
+        
+ 
+{% endblock %}
